@@ -1,0 +1,109 @@
+﻿<Window x:Class="CameraApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CameraApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Border Background="#272537"
+            CornerRadius="10">
+        <Grid Height="434" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Camera app"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"/>
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Turn On"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding StartSourceCommand}"/>
+                <RadioButton Content="Turn Off"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding StopSourceCommand}"/>
+
+                <!--<RadioButton Content="Save Screenshot"
+                             Height="50"
+                             Foreground="LightGreen"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding SaveSnapshotCommand}"/>
+                <RadioButton Content="Start Recording 🔴"
+                             Height="50"
+                             Foreground="OrangeRed"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding StartRecordingCommand}"/>-->
+                <!--<RadioButton Content="Stop Recording 🔴"
+                             Height="50"
+                             Foreground="Yellow"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding StopRecordingCommand}"/>-->
+            </StackPanel>
+            <ComboBox Grid.Column="1"
+                      Width="250"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      DisplayMemberPath="Name"
+                      ItemsSource="{Binding VideoDevices}"
+                      SelectedItem="{Binding CurrentDevice}"  />
+            <TextBlock Text="Selected camera"
+                       Foreground="White"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Grid.Column="1"
+                       FontSize="20"
+                       Margin="272,0,0,0"
+                       Padding="1" Grid.ColumnSpan="2">
+
+            </TextBlock>
+
+
+
+            <Image Grid.Column="1"
+                   Grid.Row="1"
+                   Margin="30,30,30,30"
+                   Source="{Binding Image}" Grid.ColumnSpan="2"/>
+            <TextBlock 
+           HorizontalAlignment="Left"
+           VerticalAlignment="Center"
+           Grid.Column="1"
+           FontSize="20"
+           Margin="450,0,0,0"
+           Padding="1"
+           Grid.ColumnSpan="2"
+                       Foreground="Wheat">
+                <StatusBarItem>
+                    <TextBlock Text="{Binding DetectString}"
+
+           x:Name="DetectionBlock">
+                    </TextBlock>
+                </StatusBarItem>
+            </TextBlock>
+
+
+
+        </Grid>
+    </Border>
+
+</Window>
